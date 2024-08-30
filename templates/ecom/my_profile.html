@@ -1,0 +1,97 @@
+{% extends 'ecom/customer_base.html' %}
+{% load static %}
+
+{% block content %}
+<style media="screen">
+  body {
+    /* background: linear-gradient(to right, #2980b9, #6dd5fa); */
+    font-family: Arial, sans-serif;
+  }
+
+  .profile-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-top: 50px;
+  }
+
+  .profile-pic {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+  }
+
+  .profile-details {
+    margin-top: 20px;
+  }
+
+  .button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  .button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+  .button:hover span {
+    padding-right: 25px;
+  }
+
+  .button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+</style>
+
+<br><br><br>
+<div class="container profile-container">
+  <div class="row">
+    <div class="col-md-4">
+      {% if customer.profile_pic %}
+        <img src="{% static customer.profile_pic.url %}" alt="profile pic" class="profile-pic img-rounded img-responsive" />
+      {% else %}
+        <!-- Default image or placeholder -->
+        <img src="{% static 'path_to_default_image/default_image.jpg' %}" alt="profile pic" class="profile-pic img-rounded img-responsive" />
+      {% endif %}
+    </div>
+    <div class="col-md-8 profile-details">
+      <blockquote>
+        <p>Username: {{ request.user }}</p>
+        <small><cite title="Source Title">Address: {{ customer.address }}  <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+      </blockquote>
+      <p><i class="glyphicon glyphicon-phone"></i> Contact: {{ customer.mobile }}</p>
+    </div>
+  </div>
+</div>
+<br>
+<div style="text-align: center;">
+  <a href="{% url 'edit-profile' %}">
+    <button class="button"><span>Edit Profile</span></button>
+  </a>
+</div>
+<br><br><br><br><br><br>
+{% endblock %}

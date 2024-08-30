@@ -1,0 +1,644 @@
+{% extends 'ecom/homebase.html' %}
+{% load static %}
+{% block content %}
+
+  <style media="screen">
+    body,
+html {
+  height: 100%;
+}
+
+.d-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.align-center {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.flex-centerY-centerX {
+  justify-content: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+body {
+  background-color:#eee6e6;
+}
+
+.page-wrapper {
+  height: 100%;
+  display: table;
+}
+
+.page-wrapper .page-inner {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.el-wrapper {
+  width: 360px;
+  padding: 15px;
+  margin: 15px auto;
+  background-color: #fff;
+  border-radius: 15px;
+}
+
+@media (max-width: 991px) {
+  .el-wrapper {
+    width: 345px;
+  }
+}
+
+@media (max-width: 767px) {
+  .el-wrapper {
+    width: 290px;
+    margin: 30px auto;
+  }
+}
+
+.el-wrapper:hover .h-bg {
+  left: 0px;
+}
+
+.el-wrapper:hover .price {
+  left: 20px;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: #f3f3f3;
+}
+
+.el-wrapper:hover .add-to-cart {
+  left: 50%;
+}
+
+.el-wrapper:hover .img {
+  -webkit-filter: blur(7px);  /* WebKit browsers */
+  filter: blur(7px);  /* Standard syntax */
+  opacity: 0.4;
+}
+
+
+.el-wrapper:hover .info-inner {
+  bottom: 155px;
+}
+
+.el-wrapper:hover .a-size {
+  -webkit-transition-delay: 300ms;
+  -o-transition-delay: 300ms;
+  transition-delay: 300ms;
+  bottom: 50px;
+  opacity: 1;
+}
+
+.el-wrapper .box-down {
+  width: 100%;
+  height: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.el-wrapper .box-up {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.el-wrapper .img {
+  padding: 20px 0;
+  -webkit-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+  -o-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+  transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  -webkit-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -o-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+}
+
+.h-bg {
+  -webkit-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+  -o-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+  transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  -webkit-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -o-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  width: 660px;
+  height: 100%;
+  background-color: #660404;
+  position: absolute;
+  left: -659px;
+}
+
+.h-bg .h-bg-inner {
+  width: 50%;
+  height: 100%;
+  background-color: #464646;
+}
+
+.info-inner {
+  -webkit-transition: all 400ms cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition: all 400ms cubic-bezier(0, 0, 0.18, 1);
+  -o-transition: all 400ms cubic-bezier(0, 0, 0.18, 1);
+  transition: all 400ms cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  -webkit-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -o-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  position: absolute;
+  width: 100%;
+  bottom: 10px;
+}
+
+.info-inner .p-name,
+.info-inner .p-company {
+  display: block;
+}
+
+.info-inner .p-name {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 18px;
+  color: #252525;
+}
+
+.info-inner .p-company {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  /* text-transform: uppercase; */
+  color: #fbfbfb;
+}
+
+.a-size {
+  -webkit-transition: all 300ms cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition: all 300ms cubic-bezier(0, 0, 0.18, 1);
+  -o-transition: all 300ms cubic-bezier(0, 0, 0.18, 1);
+  transition: all 300ms cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  -webkit-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -o-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  position: absolute;
+  width: 100%;
+  bottom: -20px;
+  font-family: 'PT Sans', sans-serif;
+  color: #2b2b2b;
+  font-weight: 600;
+  opacity: 0;
+}
+
+.a-size .size {
+  color: #252525;
+}
+
+.cart {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  /* font-family: 'Lato', sans-serif; */
+  font-weight: 700;
+}
+
+.cart .price {
+  -webkit-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+  -o-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+  transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  -webkit-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -o-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  -webkit-transition-delay: 100ms;
+  -o-transition-delay: 100ms;
+  transition-delay: 100ms;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  color: #252525;
+}
+
+.cart .add-to-cart {
+  -webkit-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+  -o-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+  transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  -webkit-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -o-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  -webkit-transition-delay: 100ms;
+  -o-transition-delay: 100ms;
+  transition-delay: 100ms;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 110%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.cart .add-to-cart .txt {
+  font-size: 12px;
+  color: #fff;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+* {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 30.33%;
+  /* padding: 180px; */
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+/* html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica", sans-serif;
+} */
+
+img {
+  max-width: 100%;
+}
+
+.slider-container{
+  height: 35%;
+  width: 100%;
+  position: relative;
+  overflow: hidden; 
+  text-align: center;
+}
+
+.menu {
+  position: absolute;
+  left: 0;
+  z-index: 900;
+  width: 100%;
+  bottom: 0;
+}
+
+.menu label {
+  cursor: pointer;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50px;
+  margin: 0 .2em 1em;
+  &:hover {
+  background: rgb(165, 7, 7);
+  }
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  z-index: 10;
+  padding: 8em 1em 0;
+  background-size: cover;
+  background-position: 50% 50%;
+  transition: left 0s .75s;
+}
+
+[id^="slide"]:checked + .slide {
+  left: 0;
+  z-index: 100;
+  transition: left .65s ease-out;
+}
+.pro-container {
+  width: 23%;
+  min-width: 250px;
+  padding: 10px 12px;
+  border: 1px solid #171515;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 20px 20px 30px rgb(0, 0, 0);
+  margin: 15px 0;
+  transition: 0.2s ease;
+  position: relative;
+}
+.product-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.product-buttons button {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+
+.product-buttons button a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.pro-container > .pro:hover {
+  box-shadow: 10px 20px 30px rgb(96, 235, 245);
+}
+
+ .pro {
+  width: 100%;
+  border-radius: 20px;
+  align-items: 0;
+  height:300px ;
+ 
+}
+
+.pro .des {
+  text-align: start;
+  padding: 10px 0;
+}
+
+.pro .des .span {
+  color: #b60f0f;
+  font-size: 12px;
+}
+
+.pro .des h5 {
+  padding-top: 7px;
+  color: #171515;
+  font-size: 14px;
+}
+
+ .pro .des i {
+  font-size: 12px;
+  color: rgb(218, 14, 25);
+}
+
+ .pro .des h4 {
+  padding-top: 7px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.pro .cart {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50px;
+  background-color: #000000;
+  color: rgb(4, 19, 14);
+  border: 1px solid #000000;
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+}
+#feature{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.febox {
+  width: 180px;
+  text-align: center;
+  color: rgb(231, 183, 13);
+  font-style: oblique;
+  padding: 30px 30px;
+  box-shadow: 20px 20px 34px rgb(245, 245, 245);
+  border: 4px solid #0f0909;
+  border-radius: 10px;
+  margin: 17px 0;
+
+}
+.febox:hover {
+box-shadow: 10px 10px 54px rgb(131, 4, 11);
+
+} 
+.febox img{
+  margin-bottom: 10px;
+  width: 100%;
+}
+.febox h6{
+  display:inline-block;
+  padding: 9px 8px 6px 8px;
+  line-height: 1;
+  border-radius: 4px;
+  color: #030d0d;
+  background-color: rgb(216, 56, 28);
+}
+.febox:nth-child(2) h6{
+  background-color: beige;
+}
+.febox:nth-child(3) h6{
+  background-color: rgb(214, 214, 23);
+}
+.febox:nth-child(4) h6{
+  background-color: rgb(75, 211, 29);
+}
+.febox:nth-child(5) h6{
+  background-color: rgb(8, 200, 234);
+}
+.slide-1 {
+  background-image: url("{% static 'images/img2.jpg' %}");
+  background-size: contain; /* Fit the background image within the container */
+  background-position: center 31%; /* Center the image vertically with an offset of 10% from the top */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-size: 100%
+}
+
+
+  </style>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="slider-container">
+      <div class="menu">
+        <label for="slide-dot-1"></label>
+        <label for="slide-dot-2"></label>
+        <label for="slide-dot-3"></label>
+        <label for="slide-dot-4"></label>
+      </div>
+      
+      <input id="slide-dot-1" type="radio" name="slides" checked>
+        <div class="slide slide-1"></div>
+      
+      <input id="slide-dot-2" type="radio" name="slides">
+        <div class="slide slide-2"></div>
+      
+      <input id="slide-dot-3" type="radio" name="slides">
+        <div class="slide slide-3"></div>
+      <input id="slide-dot-4" type="radio" name="slides">
+        <div class="slide slide-4"></div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- <section id="feature" class="section-p1">
+    <div class="febox">
+       <img src="{% static 'images/free.jpeg' %}" alt="">
+       <h6>free shipping</h6>
+   </div>
+   <div class="febox">
+    <img src="{% static 'images/online.png' %}" alt="">
+    <h6>online order</h6>
+</div>
+<div class="febox">
+    <img src="{% static 'images/money.jpg' %}" alt="">
+    <h6>save money</h6>
+</div>
+<div class="febox">
+    <img src="{% static 'images/happy.png' %}" alt="">
+    <h6>happy sell</h6>
+</div>
+<div class="febox">
+    <img src="{% static 'images/support.png' %}" alt="">
+    <h6>support</h6>
+</div>
+    
+
+</section> -->
+<h2 style="text-align: center; color: black; font-weight: bold;">Masala Products</h2>
+<p style="text-align: center;">Masala Makes Your Work Simple</p>
+
+{%if products%}
+<h3 style="text-align:center; color:#3E454C;">{{word}}</h3>
+<br>
+
+<!-- products data starttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt -->
+  <div class="row">
+
+      {% for p in products %}
+      <!-- card1 -->
+      <div class="column">
+      <div class="container page-wrapper" style="width: 450px;">
+        <div class="page-inner">
+          <div class="row">
+            <div class="pro-container">
+              <div class="pro">
+                <img class="img" src="{% static p.product_image.url %}" alt="product pic" >
+
+
+                <span class="price" style="font-size: 18px; font-weight: bold; color: rgb(8, 8, 8);">{{p.name}}</span>
+                <h4>Masala Products</h4>
+                <div class="img-info">
+                  <!-- <div class="info-inner">
+                    <span style="background-color:#3e454c; color:fbfbfb;"class="p-company">{{p.name}}</span>
+
+                  </div> -->
+                  <!-- <div class="a-size">{{p.description}}</div> -->
+                </div>
+              </div>
+
+              <div class="box-down">
+                <!-- <div class="h-bg">
+                  <div class="h-bg-inner"></div>
+                </div> -->
+
+                <!-- <a class="cart" href="{% url 'add-to-cart' p.id  %}"> -->
+                  
+                  <span class="price" style="font-size: 20px; font-weight: bold; color: green;">${{p.price}}</span>
+                  <!-- <span class="price" style="font-size: 18px; font-weight: bold; color: blue;">{{p.name}}</span> -->
+                  <p> 100% Natural </p>
+                  
+                  <!-- <p>{{p.description}}</p> -->
+                  <div class="product-buttons">
+                    <button class="normal">
+                      <a href="{% url 'shop' p.id %}">Buy</a>
+                    </button>
+                    <button class="normal">
+                      <a href="{% url 'add-to-cart' p.id %}">Add</a>
+                    </button>
+                  </div>
+                    <!-- <span class="txt"><i class="fa fa-shopping-cart"></i> Add To Cart</span>
+                  </span> -->
+                <!-- </a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+<!-- card1 end -->
+{% if forloop.counter|divisibleby:"3" %}
+    </div>
+
+    <div class="row">
+
+          <br><br><br><br><br> <br><br><br><br><br>
+{% endif %}
+  {% endfor %}
+</div>
+<!-- products data enddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd -->
+{%else%}
+<h3 style="text-align:center; color:#c56d79;">No Search Found</h3>
+{%endif%}
+
+
+<script>
+  if (messages) {
+      messages.forEach(function(message) {
+          alert(message);
+      });
+  }
+</script>
+<br><br><br>
+<br><br><br><br><br>
+
+{% endblock content %}

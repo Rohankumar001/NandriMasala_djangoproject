@@ -1,0 +1,101 @@
+{% extends 'ecom/admin_base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<head>
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background: #0F2027;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to left, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to left, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+      color: #fff;
+      font-weight: bold;
+      line-height: 80px;
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      margin-bottom: 2%;
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 20%;
+      cursor: pointer;
+      background: #009414;
+      color: #fff;
+    }
+
+    .menu {
+      top: 50px;
+    }
+  </style>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<div class="container register-form">
+  <div class="form">
+    <div class="note">
+      <p>Update Product Details</p>
+    </div>
+    <div class="form-content">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="id_name">Product Name</label>
+              {{ productForm.name|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+              <label for="id_description">Product Description</label>
+              {{ productForm.description|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+              <label for="id_reorderlevel">Reorder Level</label>
+              {{ productForm.reorderlevel|add_class:"form-control" }}
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="id_price">Product Price</label>
+              {{ productForm.price|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+              <label for="id_product_image">Product Image</label><br>
+              Currently: <a href="/product_image/chiken_masala.png">product_image/chiken_masala.png</a>
+              <input type="checkbox" name="product_image-clear" id="product_image-clear_id">
+              <label for="product_image-clear_id">Clear</label><br>
+              Change:
+              {{ productForm.product_image|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+              <label for="id_quantity">Quantity</label>
+              {{ productForm.qunatity|add_class:"form-control" }}
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btnSubmit">Update Product Details</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

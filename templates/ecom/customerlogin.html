@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+{% load static %}
+{% load widget_tweaks %}
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title>NANDRI MASALA</title>
+<style media="screen">
+body {
+    background-color: #fafffc;
+}
+
+.box {
+    width: 100%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #d31016; /* Red color */
+    text-align: center;
+    transition: 0.25s;
+    margin-top: 100px;
+    border-radius: 50px;
+}
+
+.box input[type="text"],
+.box input[type="password"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #ffffff;
+    padding: 10px 10px;
+    width: 250px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+.box h1 {
+    color: white;
+    font-weight: 500;
+}
+
+.box input[type="text"]:focus,
+.box input[type="password"]:focus {
+    width: 300px;
+    border-color: #d3d3d3;
+}
+
+.box input[type="submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #ffffff;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.box input[type="submit"]:hover {
+    background: #ffffff; /* White color */
+    color: #ffffff; /* Red color */
+}
+
+.forgot {
+    color: white;
+    margin-top: 10px;
+    display: block;
+    text-decoration: none;
+}
+
+.forgot:hover {
+    text-decoration: underline;
+}
+
+</style>
+</head>
+<body>
+{% include "ecom/navbar.html" %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <form class="box" method="post">
+                    {% csrf_token %}
+                    <h1>Customer Login</h1>
+                    {% render_field form.username class="form-control" placeholder="Username" autocomplete="off" %}
+                    {% render_field form.password class="form-control" placeholder="Password" %}
+                    <input type="submit" name="" value="Login">
+                   
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
+{% include "ecom/footer.html" %}
+
+</body>
+</html>

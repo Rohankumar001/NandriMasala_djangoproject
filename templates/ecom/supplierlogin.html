@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>NANDRI MASALA</title>
+    <style media="screen">
+      body {
+    margin: 0;
+    background-color: #f7f3f3;
+    padding: 0;
+    font-family: sans-serif;
+    background: #bdc3c7;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #c92a2a, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, rgb(206, 16, 16), #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.box {
+    width: 100%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background:rgba(0, 0, 0, 0.489);
+    
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.25s;
+    margin-top: 100px;
+}
+
+.box input[type="text"],
+.box input[type="password"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #e1e6e9;
+    padding: 10px 10px;
+    width: 250px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+}   
+   
+
+.box h1 {
+    color: rgb(233, 231, 231);
+    /* text-transform: uppercase; */
+    font-weight: 500
+}
+
+.box input[type="text"]:focus,
+.box input[type="password"]:focus {
+    width: 300px;
+    border-color: #dfd6d6
+}
+
+.box input[type="submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #e7dbdb;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 0px;
+    transition: 0.25s;
+    cursor: pointer
+}
+
+.box input[type="submit"]:hover {
+    background: #ca2020
+}
+
+
+    </style>
+  </head>
+ <body>
+    {% include "ecom/navbar.html" %}
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <form class="box" method="post">
+                    {% csrf_token %}
+                    <h1>ADMIN</h1>
+                   
+                     {% render_field form.username class="form-control" placeholder="Username" autocomplete="off" %}
+                     {% render_field form.password class="form-control" placeholder="Password" %}
+
+                     <input type="submit" name="" value="Login">
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
+{% include "ecom/footer.html" %}
+ </body>
+</html>
